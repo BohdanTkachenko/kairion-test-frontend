@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router';
 import {
   AppContainer,
+  ImportFeedContainer,
   BrowseShopContainer,
   ViewProductContainer,
 } from './containers';
@@ -11,6 +12,11 @@ export default () => (
     path="/"
     component={AppContainer}
   >
+    <Route
+      path="/import"
+      component={ImportFeedContainer}
+    />
+
     <Route
       path="/:shopName"
       component={BrowseShopContainer}

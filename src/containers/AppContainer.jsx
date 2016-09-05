@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { push } from 'react-router-redux';
 import { asyncConnect } from 'redux-connect';
 import * as shopActions from '../redux/modules/shop';
@@ -40,6 +41,8 @@ export class AppContainer extends React.Component {
       <div className="row fullHeight">
         <div className="col-lg-3 fullHeight" style={{ paddingLeft: 30 }}>
           <h3>Shop</h3>
+
+          <h6><Link to="/import">Import feed</Link></h6>
 
           <List
             list={list}

@@ -8,7 +8,7 @@ import { Paginator, List } from '../components';
 @asyncConnect([{
   promise(props) {
     const { store, params } = props;
-    const { product: { list, shopName } } = store.getState();
+    const { product: { shopName } } = store.getState();
 
     if (params.shopName !== shopName) {
       return store.dispatch(productActions.list(params.shopName));
