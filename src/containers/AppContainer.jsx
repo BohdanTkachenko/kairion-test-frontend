@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { asyncConnect } from 'redux-connect';
 import * as shopActions from '../redux/modules/shop';
+import { List } from '../components';
 
 @asyncConnect([{
   promise: props => {
@@ -40,16 +41,10 @@ export class AppContainer extends React.Component {
         <div className="col-lg-3 fullHeight" style={{ paddingLeft: 30 }}>
           <h3>Shop</h3>
 
-          <div className="list-group">
-            {list.map(shopName => (
-              <button
-                key={shopName}
-                type="button"
-                className="list-group-item"
-                onClick={this.browseShop(shopName)}
-              >{shopName}</button>
-            ))}
-          </div>
+          <List
+            list={list}
+            onItemSelect={::this.browseShop}
+          />
         </div>
         <div className="col-lg-9 fullHeight">
           {children}

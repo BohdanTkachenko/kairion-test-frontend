@@ -3,14 +3,15 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { asyncConnect } from 'redux-connect';
 import * as productActions from '../redux/modules/product';
+import { Paginator, List } from '../components';
 
 @asyncConnect([{
   promise(props) {
-    const { store, params: { shopName } } = props;
-    const { product: { list } } = store.getState();
+    const { store, params } = props;
+    const { product: { list, shopName } } = store.getState();
 
-    if (!list || !list.length) {
-      return store.dispatch(productActions.list(shopName));
+    if (params.shopName !== shopName) {
+      return store.dispatch(productActions.list(params.shopName));
     }
 
     return null;
@@ -62,45 +63,18 @@ export class BrowseShopContainer extends React.Component {
           <h3>Products in {shopName}</h3>
 
           <h6 style={{ textAlign: 'right' }}>
-            {currentPage > 1 && (
-              <span>
-                <a
-                  role="button"
-                  onClick={::this.prevPage}
-                >&larr; prev</a>
-                &nbsp;|&nbsp;
-              </span>
-            )}
-
-            Page {currentPage} of {pagesCount}
-
-            {currentPage <= pagesCount && (
-              <span>
-                &nbsp;|&nbsp;
-                <a
-                  role="button"
-                  onClick={::this.nextPage}
-                >next &rarr;</a>
-              </span>
-            )}
+            <Paginator
+              prevPage={::this.prevPage}
+              nextPage={::this.nextPage}
+              currentPage={currentPage}
+              pagesCount={pagesCount}
+            />
           </h6>
 
-          <div
-            className="list-group"
-            style={{
-              height: 'calc(100% - 100px)',
-              overflow: 'scroll',
-            }}
-          >
-            {list.map(productId => (
-              <button
-                key={productId}
-                type="button"
-                className="list-group-item"
-                onClick={this.viewProduct(productId)}
-              >{productId}</button>
-            ))}
-          </div>
+          <List
+            list={list}
+            onItemSelect={::this.viewProduct}
+          />
         </div>
 
         <div className="col-lg-6 fullHeight">

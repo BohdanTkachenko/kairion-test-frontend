@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import * as productActions from '../redux/modules/product';
+import { ViewProduct } from '../components';
 
 @asyncConnect([{
   promise(props) {
@@ -22,9 +23,10 @@ export class ViewProductContainer extends React.Component {
     return (
       <div className="fullHeight row">
         <div className="col-lg-12">
-          <h3>Product {productId}</h3>
-
-          <b>Price:</b> {price}
+          <ViewProduct
+            productId={productId}
+            price={price}
+          />
         </div>
       </div>
     );

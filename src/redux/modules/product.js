@@ -16,7 +16,8 @@ const initialState = {
   currentPage: 0,
   currentPageList: [],
   pagesCount: 0,
-  product: null
+  product: null,
+  shopName: null,
 };
 
 const getPageList = (list, page) => {
@@ -26,12 +27,15 @@ const getPageList = (list, page) => {
 
 export default function reducer(state = initialState, action = {}) {
   if (action.type === LIST_SUCCESS) {
+    const { shopName, list } = action.result;
+
     return {
       ...state,
-      list: action.result,
+      shopName,
+      list,
       currentPage: 1,
-      currentPageList: getPageList(action.result, 1),
-      pagesCount: Math.ceil(action.result.length / ITEMS_PER_PAGE),
+      currentPageList: getPageList(list, 1),
+      pagesCount: Math.ceil(list.length / ITEMS_PER_PAGE),
     };
   } else if (action.type === GET_SUCCESS) {
     return {
@@ -68,7 +72,8 @@ export default function reducer(state = initialState, action = {}) {
 export const list = (shopName) => ({
   types: [LIST, LIST_SUCCESS, LIST_FAILURE],
   promise: fetch => fetch(`/api/?shop=${shopName}`)
-    .then(res => res.json()),
+    .then(res => res.json())
+    .then(items => ({ shopName, list: items })),
 });
 
 export const get = (shopName, productId) => ({
