@@ -12,7 +12,6 @@ var strip = require('strip-loader');
 var CleanPlugin = require('clean-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var SplitByPathPlugin = require('webpack-split-by-path');
 
 var babelrc = fs.readFileSync('./.babelrc');
 var babelrcObject = JSON.parse(babelrc);
@@ -186,16 +185,5 @@ webpackConfig.plugins.unshift(new HtmlWebpackPlugin({
 webpackConfig.plugins.unshift(new webpack.ProvidePlugin({
   React: 'react'
 }));
-
-webpackConfig.plugins.unshift(new SplitByPathPlugin([
-  {
-    name: 'vendor',
-    path: path.join(__dirname, 'node_modules')
-  },
-  {
-    name: 'styles',
-    path: path.resolve(__dirname, 'src', 'styles'),
-  },
-]));
 
 module.exports = webpackConfig;

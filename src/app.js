@@ -9,7 +9,6 @@ import ReduxToastr from 'react-redux-toastr';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-connect';
-import fetch from 'isomorphic-fetch';
 
 import createStore from './redux/create';
 import getRoutes from './routes';
@@ -17,7 +16,7 @@ import getRoutes from './routes';
 const browserHistoryUseScroll = useScroll(() => browserHistory)();
 const store = createStore(
   browserHistoryUseScroll,
-  fetch,
+  {},
 );
 
 const history = syncHistoryWithStore(browserHistoryUseScroll, store);
