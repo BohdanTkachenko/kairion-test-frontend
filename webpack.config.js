@@ -133,11 +133,9 @@ var webpackConfig = {
     quiet: false,
     noInfo: false,
     proxy: {
-      '/api*': {
-        target: 'http://localhost:9000',
-        rewrite(req) {
-          req.url = req.url.replace(/^\/api/, '');
-        }
+      '/api': {
+        target: 'http://127.0.0.1:9000',
+        pathRewrite: { '^/api': '' },
       }
     }
   }

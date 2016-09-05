@@ -16,7 +16,7 @@ export default () => (
       component={BrowseShopContainer}
     >
       <Route
-        path=":productName"
+        path=":productId"
         component={ViewProductContainer}
       />
     </Route>

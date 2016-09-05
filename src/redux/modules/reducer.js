@@ -4,6 +4,7 @@ import { reducer as form } from 'redux-form';
 import { reducer as reduxAsyncConnect } from 'redux-connect';
 import { reducer as toastr } from 'react-redux-toastr';
 import shop from './shop';
+import product from './product';
 
 export default combineReducers({
   routing: routerReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   toastr,
   reduxAsyncConnect,
   shop,
+  product,
 });

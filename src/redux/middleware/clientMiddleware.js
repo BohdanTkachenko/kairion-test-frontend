@@ -1,4 +1,4 @@
-import fetch from 'whatwg-fetch';
+import fetch from 'isomorphic-fetch';
 
 export default function clientMiddleware() {
   return ({ dispatch, getState }) => next => action => {

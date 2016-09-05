@@ -1,6 +1,6 @@
 const LIST = 'shop/LIST';
-const LIST_SUCCESS = 'shop/TREE_SUCCESS';
-const LIST_FAILURE = 'shop/TREE_FAILURE';
+const LIST_SUCCESS = 'shop/LIST_SUCCESS';
+const LIST_FAILURE = 'shop/LIST_FAILURE';
 
 const initialState = {
   list: [],
@@ -20,6 +20,6 @@ export default function reducer(state = initialState, action = {}) {
 
 export const list = () => ({
   types: [LIST, LIST_SUCCESS, LIST_FAILURE],
-  promise: async () => (['aaa', 'bbb', 'ccc']),
-  // promise: async client => await client.get('/api/'),
+  promise: fetch => fetch('/api/shops')
+    .then(res => res.json()),
 });
