@@ -1,6 +1,8 @@
 Kairion Test Assignment (client-side part)
 ==========================================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/BohdanTkachenko/kairion-test-frontend.svg)](https://greenkeeper.io/)
+
 Installation
 ------------
 1. Clone repository: `git clone git@github.com:BohdanTkachenko/kairion-test-frontend.git`
